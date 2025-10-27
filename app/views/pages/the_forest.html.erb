@@ -1,2 +1,41 @@
-<h1>Pages#the_forest</h1>
-<p>Find me in app/views/pages/the_forest.html.erb</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>TheForest — One Page Parallax</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body id="home">
+  <!-- Barre d’ancrage (provisoire, styling et parallaxe viendront plus tard) -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About (Forêts)</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Section HOME (haut de page) -->
+  <section id="home" aria-label="Accueil">
+    <h1>TheForest</h1>
+    <p>One page créative en parallaxe. (Le visuel arrive à l’étape Front-End.)</p>
+  </section>
+
+  <!-- Section ABOUT (infos forêts) -->
+  <section id="about" aria-label="À propos des forêts">
+    <h2>À propos des forêts</h2>
+    <p>Faits et infos (placeholder). On ajoutera du contenu éditorial/visuel au front.</p>
+  </section>
+
+  <!-- Section CONTACT (message alternance) -->
+  <section id="contact" aria-label="Contact / Alternance">
+    <h2>Contact</h2>
+    <p>
+      <strong>Recherche d’alternance :</strong> Développeuse Front-End orientée design, 
+      création d’expériences visuelles fortes. Disponible pour rejoindre une équipe exigeante.
+    </p>
+    <!-- Back-end minimal : pas de formulaire pour l’instant (on reste purement créatif). -->
+  </section>
+
+  <!-- Bouton remonter en haut (back-to-top simple, amélioré au front) -->
+  <a href="#home" aria-label="Remonter en haut">Home ↑</a>
+</body>
+</html>
