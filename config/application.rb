@@ -17,6 +17,6 @@ module TheForest
     config.autoload_lib(ignore: %w[assets tasks])
 
     config.assets.paths << Rails.root.join("app", "assets", "images")
-    config.assets.precompile += %w( *.png *.jpg *.jpeg *.gif )
+    config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif]
   end
 end
