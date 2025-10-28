@@ -33,7 +33,15 @@
     }
 
     .brand,
-    .nav-links a {
+    .nav-links a,
+    .audio-toggle {
+      pointer-events: auto;
+    }
+
+    .header-branding {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(0.75rem, 2vw, 1.5rem);
       pointer-events: auto;
     }
 
@@ -118,6 +126,26 @@
       box-shadow: 0 26px 52px rgba(18, 66, 49, 0.44);
       background-image: linear-gradient(135deg, rgba(28, 98, 73, 1) 0%, rgba(41, 120, 93, 1) 100%);
       color: #e9fff7;
+    }
+
+    .audio-toggle {
+      padding: 0 20px;
+      line-height: 38px;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      background: transparent;
+      background-image: none;
+      border: 1px solid rgba(94, 214, 179, 0.55);
+      color: var(--ink);
+      box-shadow: 0 16px 42px rgba(9, 25, 20, 0.4), 0 0 18px rgba(94, 214, 179, 0.32);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .audio-toggle:hover {
+      background: transparent;
+      box-shadow: 0 22px 56px rgba(12, 30, 24, 0.52), 0 0 28px rgba(126, 240, 212, 0.42);
+      border-color: rgba(126, 240, 212, 0.65);
+      color: var(--ink);
     }
 
     /* === Parallaxe sections === */
@@ -381,7 +409,14 @@
 
 <body id="top">
   <header>
-    <a class="brand" href="#top">Home</a>
+    <div class="header-branding">
+      <a class="brand" href="#top">Home</a>
+      <button class="btn-4 audio-toggle"
+              aria-pressed="false"
+              aria-label="Activer l’ambiance">
+        <span>🌿 Activer l’ambiance</span>
+      </button>
+    </div>
     <nav class="nav-links">
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
@@ -467,5 +502,56 @@
       });
     });
   </script>
+
+ <!-- Ambiance forêt -->
+<audio id="forest-audio"
+       src="<%= asset_path('forest-ambience-296528.mp3') %>"
+       preload="auto"
+       loop
+       muted
+       autoplay
+       playsinline></audio>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const audio = document.getElementById("forest-audio");
+  const btn   = document.querySelector(".audio-toggle");
+  const TARGET = 0.3; // volume doux
+
+  // helper: transition de volume
+  const fadeTo = (target, ms) => {
+    const step = (target - audio.volume) / Math.max(ms / 50, 1);
+    const id = setInterval(() => {
+      audio.volume = Math.max(0, Math.min(1, audio.volume + step));
+      const doneUp   = step > 0 && audio.volume >= target;
+      const doneDown = step < 0 && audio.volume <= target;
+      if (doneUp || doneDown) { audio.volume = target; clearInterval(id); }
+    }, 50);
+  };
+
+  // toggle au clic : démarre en fondu, coupe en fondu
+  btn.addEventListener("click", async () => {
+    if (audio.paused || audio.muted || audio.volume === 0) {
+      try {
+        audio.muted = false;       // dé-mute autorisé car dans un handler user
+        audio.volume = 0;          // départ silencieux
+        await audio.play();        // lecture garantie (interaction utilisateur)
+        fadeTo(TARGET, 600);       // fondu d'entrée
+        btn.querySelector("span").textContent = "Silence";
+        btn.setAttribute("aria-pressed", "true");
+      } catch (e) {
+        console.warn("Lecture bloquée :", e);
+      }
+    } else {
+      fadeTo(0, 400);              // fondu de sortie
+      setTimeout(() => { audio.pause(); audio.muted = true; }, 420);
+      btn.querySelector("span").textContent = " Listen";
+      btn.setAttribute("aria-pressed", "false");
+    }
+  });
+});
+</script>
+
+
 </body>
 </html>
