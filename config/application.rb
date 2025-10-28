@@ -15,8 +15,6 @@ module TheForest
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
-
-   
     config.assets.paths << Rails.root.join("app", "assets", "images")
     config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif]
     config.assets.paths << Rails.root.join("app", "assets", "audios")
