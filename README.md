@@ -1,24 +1,39 @@
-# README
+# README — TheForest: Parallax & Nature Ambience Experience
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TheForest is an immersive landing page built with Ruby on Rails 8, designed to evoke the calm and beauty of a forest.
+It combines a parallax scrolling effect, gray smoke animation, and a realistic forest soundscape for a truly relaxing experience.
 
-Things you may want to cover:
+Main Features :
+Smooth parallax scrolling powered by GSAP + ScrollTrigger
+Forest ambient sound (birds, wind) with an interactive toggle button
+Subtle gray smoke animation around the title
+Responsive, nature-inspired design
+Fully compatible with Rails 8 asset pipeline
 
-* Ruby version
+ Built With
+Ruby on Rails 8.0.3
+JavaScript (GSAP, ScrollTrigger)
+HTML5 / CSS3
+Open-source audio (CC0 license)
+Git & GitHub
 
-* System dependencies
+ Local Setup
+# Clone the project
+git clone https://github.com/<your-username>/<your-repo>.git
 
-* Configuration
+# Navigate into the folder
+cd TheForest
 
-* Database creation
+# Install dependencies
+bundle install
 
-* Database initialization
+# Run the server
+rails server
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+Then open http://localhost:3000
+ in your browser.
 
-* Deployment instructions
-
-* ...
+Credits
+Ambient sound: “Forest Ambience” by hookiubm — CC0 License (freesound.org)
+Smoke animation: inspired by SochavaAG - codepen.io
