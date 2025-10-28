@@ -18,22 +18,16 @@ Open-source audio (CC0 license)
 Git & GitHub
 
  Local Setup
-# Clone the project
+Clone the project
 git clone https://github.com/<your-username>/<your-repo>.git
-
-# Navigate into the folder
 cd TheForest
-
-# Install dependencies
 bundle install
-
-# Run the server
 rails server
 
 
 Then open http://localhost:3000
  in your browser.
 
-Credits
+#Credits
 Ambient sound: “Forest Ambience” by hookiubm — CC0 License (freesound.org)
 Smoke animation: inspired by SochavaAG - codepen.io
