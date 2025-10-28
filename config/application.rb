@@ -16,7 +16,10 @@ module TheForest
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+   
     config.assets.paths << Rails.root.join("app", "assets", "images")
-    config.assets.precompile += %w( *.png *.jpg *.jpeg *.gif )
+    config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif]
+    config.assets.paths << Rails.root.join("app", "assets", "audios")
+
   end
 end
